@@ -1,13 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import { site } from '../data/site';
+import { site, withBase } from '../data/site';
 ---
 
 <BaseLayout page="app">
   <section class="app-launch section-pad">
     <div class="shell app-shell">
       <aside class="app-sidebar">
-        <a class="app-wordmark" href="/">{site.name}</a>
+        <a class="app-wordmark" href={withBase('/')}>{site.name}</a>
         <div class="project-state">
           <span class="project-icon" aria-hidden="true">＋</span>
           <div><strong>New project</strong><small>Nothing selected yet</small></div>

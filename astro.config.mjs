@@ -1,12 +1,18 @@
 import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
-import { isNoindexPath, site } from './src/data/site.ts';
+import { isNoindexPath, site, siteBasePath } from './src/data/site.ts';
+
+const deployedOnGitHubPages = Boolean(siteBasePath);
 
 export default defineConfig({
-  site: site.seo.canonicalBaseUrl,
+  site: deployedOnGitHubPages ? 'https://elilinden.github.io' : site.seo.canonicalBaseUrl,
+  base: siteBasePath || undefined,
   integrations: [
     sitemap({
-      filter: (page) => !isNoindexPath(new URL(page).pathname.replace(/\/$/, '') || '/'),
+      filter: (page) => {
+        const pathname = new URL(page).pathname.replace(siteBasePath, '').replace(/\/$/, '') || '/';
+        return !isNoindexPath(pathname);
+      },
     }),
   ],
 });

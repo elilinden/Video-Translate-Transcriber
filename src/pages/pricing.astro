@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import SectionIntro from '../components/SectionIntro.astro';
-import { pricingFaqs, site } from '../data/site';
+import { pricingFaqs, site, withBase } from '../data/site';
 ---
 
 <BaseLayout page="pricing">
@@ -9,8 +9,8 @@ import { pricingFaqs, site } from '../data/site';
 
   <section class="pricing-section section-pad" id="download">
     <div class="shell pricing-grid">
-      <article class="price-card featured"><div class="price-card-top"><span class="price-label">FLEXIBLE</span><span class="trial-pill">{site.plans.weekly.trial}</span></div><h2>{site.plans.weekly.name}</h2><p class="price-value">{site.plans.weekly.price}<small> {site.plans.weekly.cadence}</small></p><p class="price-note">{site.plans.weekly.note}</p><ul><li>All subtitle and translation tools</li><li>All supported languages</li><li>Three days free for eligible new subscribers</li></ul><a class="button" href={site.appPath}>Open the app <span aria-hidden="true">↗</span></a></article>
-      <article class="price-card"><div class="price-card-top"><span class="price-label">ONE & DONE</span><span class="quiet-pill">{site.plans.lifetime.trial}</span></div><h2>{site.plans.lifetime.name}</h2><p class="price-value">{site.plans.lifetime.price}<small> {site.plans.lifetime.cadence}</small></p><p class="price-note">{site.plans.lifetime.note}</p><ul><li>All subtitle and translation tools</li><li>All supported languages</li><li>No recurring subscription</li></ul><a class="button button-outline" href={site.appPath}>Open the app <span aria-hidden="true">↗</span></a></article>
+      <article class="price-card featured"><div class="price-card-top"><span class="price-label">FLEXIBLE</span><span class="trial-pill">{site.plans.weekly.trial}</span></div><h2>{site.plans.weekly.name}</h2><p class="price-value">{site.plans.weekly.price}<small> {site.plans.weekly.cadence}</small></p><p class="price-note">{site.plans.weekly.note}</p><ul><li>All subtitle and translation tools</li><li>All supported languages</li><li>Three days free for eligible new subscribers</li></ul><a class="button" href={withBase(site.appPath)}>Open the app <span aria-hidden="true">↗</span></a></article>
+      <article class="price-card"><div class="price-card-top"><span class="price-label">ONE & DONE</span><span class="quiet-pill">{site.plans.lifetime.trial}</span></div><h2>{site.plans.lifetime.name}</h2><p class="price-value">{site.plans.lifetime.price}<small> {site.plans.lifetime.cadence}</small></p><p class="price-note">{site.plans.lifetime.note}</p><ul><li>All subtitle and translation tools</li><li>All supported languages</li><li>No recurring subscription</li></ul><a class="button button-outline" href={withBase(site.appPath)}>Open the app <span aria-hidden="true">↗</span></a></article>
     </div>
     <div class="shell availability-note" id="availability"><p><strong>App availability:</strong> The public App Store link is not published in this Phase 1 build.</p><span>{site.todo.appStoreUrl}</span></div>
   </section>

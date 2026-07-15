@@ -2,7 +2,7 @@
   "name": "Video Translate Transcriber",
   "short_name": "Video Translate Transcriber",
   "description": "Transcription, translation, and timed subtitles for spoken video.",
-  "start_url": "/app",
+  "start_url": "./app",
   "display": "standalone",
   "background_color": "#f7f7fb",
   "theme_color": "#f7f7fb",

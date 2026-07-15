@@ -2,6 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 import PhoneMockup from '../components/PhoneMockup.astro';
 import SectionIntro from '../components/SectionIntro.astro';
+import { withBase } from '../data/site';
 ---
 
 <BaseLayout page="howItWorks">
@@ -34,5 +35,5 @@ import SectionIntro from '../components/SectionIntro.astro';
     </div>
   </section>
 
-  <section class="closing-cta section-pad"><div class="shell closing-card"><p class="eyebrow">THE NEXT FRAME</p><h2>Keep the message. Change the language.</h2><a class="button" href="/app">Open the app <span aria-hidden="true">→</span></a></div></section>
+  <section class="closing-cta section-pad"><div class="shell closing-card"><p class="eyebrow">THE NEXT FRAME</p><h2>Keep the message. Change the language.</h2><a class="button" href={withBase('/app')}>Open the app <span aria-hidden="true">→</span></a></div></section>
 </BaseLayout>

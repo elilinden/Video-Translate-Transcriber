@@ -3,7 +3,11 @@ import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { join, relative, resolve } from 'node:path';
 
 const dist = resolve('dist');
-const canonicalBase = 'https://video-translate-transcriber.invalid';
+const deployedToGitHubPages = process.env.DEPLOY_GITHUB_PAGES === 'true';
+const deploymentBasePath = deployedToGitHubPages ? '/Video-Translate-Transcriber' : '';
+const canonicalBase = deployedToGitHubPages
+  ? 'https://elilinden.github.io/Video-Translate-Transcriber'
+  : 'https://video-translate-transcriber.invalid';
 const errors = [];
 const warnings = [];
 
@@ -34,6 +38,11 @@ function attribute(tag, attributeName) {
 
 function canonicalFor(route) {
   return canonicalBase + (route === '/' ? '/' : route + '/');
+}
+
+function withoutDeploymentBase(pathname) {
+  if (!deploymentBasePath || !pathname.startsWith(deploymentBasePath)) return pathname;
+  return pathname.slice(deploymentBasePath.length) || '/';
 }
 
 const allFiles = walk(dist);
@@ -79,7 +88,7 @@ for (const file of htmlFiles) {
   for (const match of links) {
     const href = attribute(match[0], 'href');
     if (!href || href.startsWith('#') || /^(?:https?:|mailto:|tel:)/.test(href)) continue;
-    const target = href.split('#')[0].split('?')[0] || route;
+    const target = withoutDeploymentBase(href.split('#')[0].split('?')[0] || route);
     linkChecks += 1;
     if (!routes.has(target)) errors.push(route + ': broken internal link ' + href + '.');
   }
@@ -90,7 +99,7 @@ for (const file of htmlFiles) {
     const alt = attribute(match[0], 'alt');
     const src = attribute(match[0], 'src');
     if (alt === undefined) errors.push(route + ': image is missing alt text.');
-    if (src?.startsWith('/') && !existsSync(join(dist, src))) errors.push(route + ': image asset is missing at ' + src + '.');
+    if (src?.startsWith('/') && !existsSync(join(dist, withoutDeploymentBase(src)))) errors.push(route + ': image asset is missing at ' + src + '.');
   }
 
   if (/<form\b/i.test(html)) errors.push(route + ': contains a form without a verified backend.');
@@ -125,7 +134,9 @@ if (!existsSync(sitemapIndexPath)) {
   errors.push('Missing generated sitemap-index.xml.');
 } else {
   const sitemapIndex = contentFor(sitemapIndexPath);
-  const sitemapFiles = [...sitemapIndex.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => new URL(match[1]).pathname.slice(1));
+  const sitemapFiles = [...sitemapIndex.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) =>
+    withoutDeploymentBase(new URL(match[1]).pathname).replace(/^\//, ''),
+  );
   const sitemapUrls = new Set();
   for (const sitemapFile of sitemapFiles) {
     const localFile = join(dist, sitemapFile);
@@ -150,7 +161,7 @@ if (existsSync(join(dist, 'social-share.png'))) {
 const placeholderMatches = allFiles
   .filter((file) => /\.(?:html|xml|txt)$/i.test(file))
   .flatMap((file) => (contentFor(file).match(/video-translate-transcriber\.invalid|TODO:/g) ?? []).map((match) => relative(dist, file) + ' (' + match + ')'));
-if (placeholderMatches.length) warnings.push('Launch placeholders detected in generated output: ' + placeholderMatches.length + '. The configured canonical host is intentionally .invalid until a real domain is supplied.');
+if (placeholderMatches.length) warnings.push('Launch placeholders detected in generated output: ' + placeholderMatches.length + '.');
 
 const assetBytes = allFiles.reduce((total, file) => total + statSync(file).size, 0);
 const cssBytes = allFiles.filter((file) => file.endsWith('.css')).reduce((total, file) => total + statSync(file).size, 0);

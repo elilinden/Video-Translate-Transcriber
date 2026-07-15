@@ -1,29 +1,29 @@
 ---
-import { site } from '../data/site';
+import { site, siteBasePath, withBase } from '../data/site';
 
 const path = Astro.url.pathname;
 ---
 
 <header class="site-header">
   <div class="shell header-inner">
-    <a class="brand" href="/" aria-label={`${site.name} home`}>
+    <a class="brand" href={withBase('/')} aria-label={`${site.name} home`}>
       <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
       <span>{site.shortName}</span>
     </a>
 
     <nav class="desktop-nav" aria-label="Primary navigation">
       {site.nav.map((item) => (
-        <a class:list={[{ active: path === item.href }]} href={item.href}>{item.label}</a>
+        <a class:list={[{ active: path === siteBasePath + item.href }]} href={withBase(item.href)}>{item.label}</a>
       ))}
     </nav>
 
-    <a class="button button-small header-cta" href={site.appPath}>Open the app <span aria-hidden="true">↗</span></a>
+    <a class="button button-small header-cta" href={withBase(site.appPath)}>Open the app <span aria-hidden="true">↗</span></a>
 
     <details class="mobile-nav">
       <summary aria-label="Open navigation"><span></span><span></span></summary>
       <nav aria-label="Mobile navigation">
-        {site.nav.map((item) => <a href={item.href}>{item.label}</a>)}
-        <a class="mobile-download" href={site.appPath}>Open the app <span aria-hidden="true">↗</span></a>
+        {site.nav.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
+        <a class="mobile-download" href={withBase(site.appPath)}>Open the app <span aria-hidden="true">↗</span></a>
       </nav>
     </details>
   </div>

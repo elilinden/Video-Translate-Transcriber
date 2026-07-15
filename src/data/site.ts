@@ -1,3 +1,9 @@
+export const isGitHubPagesDeployment = process.env.DEPLOY_GITHUB_PAGES === 'true';
+export const siteBasePath = isGitHubPagesDeployment ? '/Video-Translate-Transcriber' : '';
+const canonicalBaseUrl = isGitHubPagesDeployment
+  ? 'https://elilinden.github.io/Video-Translate-Transcriber'
+  : 'https://video-translate-transcriber.invalid';
+
 export const publicFactsTodo = {
   productionUrl: 'TODO: replace video-translate-transcriber.invalid with the production HTTPS domain before launch',
   appStoreUrl: 'TODO: add the verified App Store listing URL before launch',
@@ -64,7 +70,7 @@ export const site = {
   },
   seo: {
     // Reserved .invalid keeps the local build honest until a real domain is supplied.
-    canonicalBaseUrl: 'https://video-translate-transcriber.invalid',
+    canonicalBaseUrl,
     locale: 'en_US',
     socialImagePath: '/social-share.png',
     noindexPaths: ['/privacy', '/terms'],
@@ -196,7 +202,15 @@ export function absoluteUrl(pathname = '/') {
     pathname === '/' || pathname.includes('.')
       ? pathname
       : pathname.replace(/\/$/, '') + '/';
-  return new URL(normalizedPath, site.seo.canonicalBaseUrl).toString();
+  const baseUrl = site.seo.canonicalBaseUrl.endsWith('/')
+    ? site.seo.canonicalBaseUrl
+    : site.seo.canonicalBaseUrl + '/';
+  return new URL(normalizedPath.replace(/^\//, ''), baseUrl).toString();
+}
+
+export function withBase(pathname = '/') {
+  if (!pathname.startsWith('/')) return pathname;
+  return siteBasePath + pathname;
 }
 
 export function isNoindexPath(pathname: string) {
