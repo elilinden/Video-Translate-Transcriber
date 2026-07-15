@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PhoneMockup from '../components/PhoneMockup.astro';
+import SectionIntro from '../components/SectionIntro.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout page="features">
+  <section class="page-hero section-pad"><div class="shell"><SectionIntro eyebrow="VIDEO TRANSLATE TRANSCRIBER FOR IPHONE" title="The tools stay out of the way. The words do not." description="Everything in the flow has one job: help you make a clear, readable version of your video." /></div></section>
+
+  <section class="feature-showcase section-pad">
+    <div class="shell showcase-grid">
+      <div class="showcase-art pale-panel"><PhoneMockup variant="transcript" /></div>
+      <div class="showcase-copy"><p class="eyebrow">TIMED TRANSCRIPTS</p><h2>See the words in their moment.</h2><p>Build subtitles around when speech happens, then review the text before it becomes part of the final video.</p><ul class="check-list"><li>Spoken-language selection</li><li>Hard-to-hear audio profile</li><li>Editable transcript review</li></ul></div>
+    </div>
+  </section>
+
+  <section class="feature-showcase section-pad feature-showcase-alt">
+    <div class="shell showcase-grid reverse-grid">
+      <div class="showcase-copy"><p class="eyebrow">SUBTITLE STYLE</p><h2>Make it legible, not loud.</h2><p>Choose where subtitles sit, how large they feel, and the color treatment that works with the image behind them.</p><ul class="check-list"><li>Top or bottom placement</li><li>Size and background controls</li><li>Common color choices in one view</li></ul></div>
+      <div class="showcase-art color-panel"><PhoneMockup variant="style" /></div>
+    </div>
+  </section>
+
+  <section class="section-pad language-page-section">
+    <div class="shell"><div class="split-heading"><p class="eyebrow">SUPPORTED LANGUAGES</p><h2>Build a version that meets your audience where they are.</h2></div><div class="language-cloud">{site.languages.map((language) => <span>{language}</span>)}</div></div>
+  </section>
+
+  <section class="privacy-note section-pad"><div class="shell privacy-note-inner"><span class="lock-shape" aria-hidden="true">⌁</span><div><p class="eyebrow">PRIVATE BY DESIGN</p><h2>Your video stays on your iPhone while it is processed.</h2><p>The product experience is designed to keep the work close to the device you are already using.</p></div></div></section>
+</BaseLayout>

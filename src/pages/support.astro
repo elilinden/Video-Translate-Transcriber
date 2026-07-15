@@ -1,0 +1,11 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionIntro from '../components/SectionIntro.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout page="support">
+  <section class="page-hero section-pad"><div class="shell"><SectionIntro eyebrow="SUPPORT" title="A calm place to get unstuck." description="A few practical answers for the common moments in the subtitle workflow." /></div></section>
+  <section class="support-section section-pad"><div class="shell support-grid"><div class="support-card"><span class="support-symbol" aria-hidden="true">01</span><h2>Choosing a video</h2><p>Use Photos or Files to choose a video. If you change your mind, remove it and choose a different one before processing.</p></div><div class="support-card"><span class="support-symbol" aria-hidden="true">02</span><h2>Audio is difficult to understand</h2><p>Try the Hard-to-hear audio profile for muffled, distant, loud, or rapid speech before you begin transcribing.</p></div><div class="support-card"><span class="support-symbol" aria-hidden="true">03</span><h2>Purchase access</h2><p>Use Restore Purchases in the app if you have already purchased access with the same Apple Account.</p></div></div></section>
+  <section class="support-contact section-pad"><div class="shell contact-card"><p class="eyebrow">CONTACT</p><h2>Need a human answer?</h2><p>The public support contact will be added before release.</p><code>{site.todo.supportEmail}</code></div></section>
+</BaseLayout>

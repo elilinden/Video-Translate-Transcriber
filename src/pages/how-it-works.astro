@@ -1,0 +1,38 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import PhoneMockup from '../components/PhoneMockup.astro';
+import SectionIntro from '../components/SectionIntro.astro';
+---
+
+<BaseLayout page="howItWorks">
+  <section class="page-hero section-pad">
+    <div class="shell"><SectionIntro eyebrow="HOW IT WORKS" title="A simple path from sound to subtitles." description="Bring in a video, choose the languages, make the words look right, and leave with a share-ready version." /></div>
+  </section>
+
+  <section class="workflow-section section-pad">
+    <div class="shell workflow-list">
+      <article class="workflow-row">
+        <div class="workflow-number">01</div>
+        <div><p class="eyebrow">CHOOSE A VIDEO</p><h2>Start with the clip you already have.</h2><p>Pick a video from Photos or Files, then preview it before you begin. The workflow stays focused on one clear job at a time.</p></div>
+        <div class="workflow-mini mini-upload" aria-hidden="true"><span>＋</span><small>Choose video</small></div>
+      </article>
+      <article class="workflow-row reverse">
+        <div class="workflow-number">02</div>
+        <div><p class="eyebrow">CHOOSE LANGUAGES</p><h2>Set what is spoken and what will be shown.</h2><p>Use the language pair that matches your video and your audience. When audio is especially difficult, choose a profile designed for hard-to-hear speech.</p></div>
+        <div class="workflow-mini mini-language" aria-hidden="true"><span>English</span><b>→</b><span>Spanish</span></div>
+      </article>
+      <article class="workflow-row">
+        <div class="workflow-number">03</div>
+        <div><p class="eyebrow">REVIEW & STYLE</p><h2>Give the words their final form.</h2><p>Review what is on screen, then control placement, size, color, and background treatment before you export.</p></div>
+        <div class="workflow-phone"><PhoneMockup variant="style" /></div>
+      </article>
+      <article class="workflow-row reverse">
+        <div class="workflow-number">04</div>
+        <div><p class="eyebrow">MAKE IT READY</p><h2>Finish the version you want to share.</h2><p>Export a captioned video when the look matters, or use the subtitle file when the next destination needs its own version.</p></div>
+        <div class="workflow-mini mini-export" aria-hidden="true"><span>✓</span><small>Ready to share</small></div>
+      </article>
+    </div>
+  </section>
+
+  <section class="closing-cta section-pad"><div class="shell closing-card"><p class="eyebrow">THE NEXT FRAME</p><h2>Keep the message. Change the language.</h2><a class="button" href="/app">Open the app <span aria-hidden="true">→</span></a></div></section>
+</BaseLayout>

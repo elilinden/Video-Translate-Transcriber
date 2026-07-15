@@ -1,0 +1,65 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import JsonLd from '../components/JsonLd.astro';
+import { absoluteUrl, isNoindexPath, pageMetadata, site, type PageKey } from '../data/site';
+import { structuredDataForPage } from '../data/structured-data';
+
+interface Props {
+  page: PageKey;
+}
+
+const { page } = Astro.props;
+const metadata = pageMetadata[page];
+const canonicalUrl = absoluteUrl(metadata.pathname);
+const socialImageUrl = absoluteUrl(site.seo.socialImagePath);
+const noindex = isNoindexPath(metadata.pathname);
+const schemas = structuredDataForPage(page);
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={metadata.description} />
+    <meta name="theme-color" content="#f7f7fb" />
+    <meta name="color-scheme" content="light" />
+    <meta name="robots" content={noindex ? 'noindex,follow' : 'index,follow,max-image-preview:large'} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" href="/favicon.ico" sizes="any" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={site.seo.locale} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={metadata.title} />
+    <meta property="og:description" content={metadata.description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialImageUrl} />
+    <meta property="og:image:alt" content="Video Translate Transcriber app preview for transcribing and translating spoken video into subtitles" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={metadata.title} />
+    <meta name="twitter:description" content={metadata.description} />
+    <meta name="twitter:image" content={socialImageUrl} />
+    <meta name="twitter:image:alt" content="Video Translate Transcriber app preview for transcribing and translating spoken video into subtitles" />
+    {site.seo.verification.google && <meta name="google-site-verification" content={site.seo.verification.google} />}
+    {site.seo.verification.bing && <meta name="msvalidate.01" content={site.seo.verification.bing} />}
+    {schemas.map((schema) => <JsonLd data={schema} />)}
+    <title>{metadata.title}</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
+    <Header />
+    {page !== 'home' && (
+      <nav class="breadcrumb shell" aria-label="Breadcrumb">
+        <a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">{metadata.label}</span>
+      </nav>
+    )}
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

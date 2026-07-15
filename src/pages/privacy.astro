@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionIntro from '../components/SectionIntro.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout page="privacy">
+  <section class="page-hero section-pad"><div class="shell"><SectionIntro eyebrow="PRIVACY" title="Your video deserves a private workspace." description="The app is designed around processing your video on your iPhone, rather than treating your footage as something to send away." /></div></section>
+  <section class="policy-section section-pad"><div class="shell policy-grid"><aside><p class="eyebrow">PRIVACY OVERVIEW</p><p>This is a Phase 1 site policy placeholder. It is not a final legal policy.</p></aside><div class="policy-copy"><h2>What the product is designed to do</h2><p>Video Translate Transcriber is designed to process the video you choose directly on your iPhone. The product flow makes this clear while you choose a video, create subtitles, and prepare an export.</p><h2>Before publication</h2><p>A complete public privacy policy still needs the developer or legal entity, contact method, policy date, App Store data disclosures, and any service-specific details that apply at release.</p><dl><div><dt>Policy owner</dt><dd>{site.todo.legalEntity}</dd></div><div><dt>Support contact</dt><dd>{site.todo.supportEmail}</dd></div><div><dt>Effective date</dt><dd>{site.todo.privacyEffectiveDate}</dd></div></dl></div></div></section>
+</BaseLayout>

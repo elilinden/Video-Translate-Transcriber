@@ -1,0 +1,83 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout page="app">
+  <section class="app-launch section-pad">
+    <div class="shell app-shell">
+      <aside class="app-sidebar">
+        <a class="app-wordmark" href="/">{site.name}</a>
+        <div class="project-state">
+          <span class="project-icon" aria-hidden="true">＋</span>
+          <div><strong>New project</strong><small>Nothing selected yet</small></div>
+        </div>
+        <p>Your video stays in your workspace while you set up transcription and translation.</p>
+      </aside>
+
+      <div class="app-workspace">
+        <p class="eyebrow">NEW TRANSLATION</p>
+        <h1>Start with your video.</h1>
+        <p class="app-intro">Choose a clip, confirm the spoken and subtitle languages, then continue to the transcript workspace.</p>
+
+        <div class="app-step-grid">
+          <section class="app-panel app-upload-panel" aria-labelledby="video-title">
+            <div class="step-number">01</div>
+            <h2 id="video-title">Choose a video</h2>
+            <p>Pick a video from your device to begin a new project.</p>
+            <label class="file-picker" for="video-file"><span aria-hidden="true">↑</span> Choose video</label>
+            <input id="video-file" class="visually-hidden" type="file" accept="video/*" />
+            <p class="file-status" id="file-status" aria-live="polite">No video selected</p>
+          </section>
+
+          <section class="app-panel" aria-labelledby="languages-title">
+            <div class="step-number">02</div>
+            <h2 id="languages-title">Set your languages</h2>
+            <p>Tell the app what is spoken and what you want your audience to read.</p>
+            <div class="language-selects">
+              <label>Spoken language
+                <select id="source-language">
+                  {site.languages.map((language) => <option selected={language === 'English'}>{language}</option>)}
+                </select>
+              </label>
+              <span aria-hidden="true">→</span>
+              <label>Subtitle language
+                <select id="target-language">
+                  {site.languages.map((language) => <option selected={language === 'Spanish'}>{language}</option>)}
+                </select>
+              </label>
+            </div>
+          </section>
+        </div>
+
+        <div class="app-next-step">
+          <div><strong>Ready when you are</strong><span id="next-step-copy">Choose a video to unlock the transcript workspace.</span></div>
+          <button id="continue-button" class="button" type="button" disabled>Continue to transcript <span aria-hidden="true">→</span></button>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const fileInput = document.querySelector<HTMLInputElement>('#video-file');
+  const fileStatus = document.querySelector<HTMLParagraphElement>('#file-status');
+  const continueButton = document.querySelector<HTMLButtonElement>('#continue-button');
+  const nextStepCopy = document.querySelector<HTMLSpanElement>('#next-step-copy');
+
+  if (fileInput) {
+    fileInput.addEventListener('change', () => {
+      const file = fileInput.files?.[0];
+      if (!file || !fileStatus || !continueButton || !nextStepCopy) return;
+      fileStatus.textContent = file.name;
+      continueButton.disabled = false;
+      nextStepCopy.textContent = 'Your project is ready for transcription and translation.';
+    });
+  }
+
+  if (continueButton && nextStepCopy) {
+    continueButton.addEventListener('click', () => {
+      nextStepCopy.textContent = 'Transcript workspace coming next.';
+    });
+  }
+</script>

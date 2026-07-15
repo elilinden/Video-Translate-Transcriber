@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import SectionIntro from '../components/SectionIntro.astro';
+import { site } from '../data/site';
+---
+
+<BaseLayout page="terms">
+  <section class="page-hero section-pad">
+    <div class="shell"><SectionIntro eyebrow="TERMS" title="The release terms are being prepared." description="This pre-release overview explains what still needs legal review before Video Translate Transcriber is publicly available." /></div>
+  </section>
+  <section class="policy-section section-pad">
+    <div class="shell policy-grid">
+      <aside>
+        <p class="eyebrow">PRE-RELEASE NOTICE</p>
+        <p>This is not a final agreement and is marked noindex until approved legal terms are supplied.</p>
+      </aside>
+      <div class="policy-copy">
+        <h2>What will be finalized before launch</h2>
+        <p>The public terms need the responsible legal entity, the applicable agreement, purchase and subscription terms, governing terms, and a verified support contact.</p>
+        <h2>Purchase information shown on this site</h2>
+        <p>The pricing page currently presents a three-day free trial for eligible new weekly subscribers and a separate lifetime purchase option. Final terms must be checked against the App Store configuration before publication.</p>
+        <dl>
+          <div><dt>Terms owner</dt><dd>{site.todo.legalEntity}</dd></div>
+          <div><dt>Support contact</dt><dd>{site.todo.supportEmail}</dd></div>
+          <div><dt>App Store listing</dt><dd>{site.todo.appStoreUrl}</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

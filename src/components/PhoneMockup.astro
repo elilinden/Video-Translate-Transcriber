@@ -1,0 +1,32 @@
+---
+interface Props {
+  variant?: 'transcript' | 'style' | 'ready';
+}
+
+const { variant = 'transcript' } = Astro.props;
+const labels = {
+  transcript: { top: 'New translation', badge: 'English → Spanish', title: 'A better way to', accent: 'follow every word.', chip: 'Transcribing audio' },
+  style: { top: 'Subtitle style', badge: 'Spanish • 1:28', title: 'Readable by', accent: 'design.', chip: 'Color & placement' },
+  ready: { top: 'Video ready', badge: 'Captions included', title: 'Ready to', accent: 'share.', chip: 'Export complete' },
+}[variant];
+---
+
+<div class={`phone phone-${variant}`} aria-label={`${labels.top} app preview`} role="img">
+  <div class="phone-top"><span>9:41</span><span class="dynamic-island"></span><span class="signal"></span></div>
+  <div class="phone-screen">
+    <div class="phone-title-row"><span class="back-arrow" aria-hidden="true">‹</span><strong>{labels.top}</strong><span></span></div>
+    <div class="phone-video">
+      <div class="video-orb orb-one"></div><div class="video-orb orb-two"></div>
+      <span class="video-play" aria-hidden="true">▶</span>
+      <span class="caption caption-one">{labels.title}</span>
+      <span class="caption caption-two">{labels.accent}</span>
+    </div>
+    <div class="phone-detail-row"><span>{labels.badge}</span><span>•••</span></div>
+    {variant === 'style' ? (
+      <div class="style-controls"><span>Text color</span><div><i></i><i></i><i></i><i></i></div><span class="style-line"></span></div>
+    ) : (
+      <div class="transcript-lines"><span></span><span></span><span></span><span></span></div>
+    )}
+    <div class="phone-chip"><span class="chip-dot"></span>{labels.chip}</div>
+  </div>
+</div>

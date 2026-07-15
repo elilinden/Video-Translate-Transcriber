@@ -1,0 +1,33 @@
+---
+import { site } from '../data/site';
+---
+
+<footer class="site-footer">
+  <div class="shell footer-grid">
+    <div>
+      <a class="brand footer-brand" href="/" aria-label={`${site.name} home`}>
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>{site.shortName}</span>
+      </a>
+      <p>Clear words, ready for wherever your video goes.</p>
+    </div>
+    <div class="footer-links">
+      <div>
+        <span class="footer-label">Explore</span>
+        <a href="/how-it-works">How it works</a>
+        <a href="/features">Features</a>
+        <a href="/pricing">Pricing</a>
+      </div>
+      <div>
+        <span class="footer-label">Help</span>
+        <a href="/support">Support</a>
+        <a href="/privacy">Privacy</a>
+        <a href="/terms">Terms</a>
+      </div>
+    </div>
+  </div>
+  <div class="shell footer-bottom">
+    <span>© 2026 {site.name}</span>
+    <span>Designed for video with something to say.</span>
+  </div>
+</footer>
