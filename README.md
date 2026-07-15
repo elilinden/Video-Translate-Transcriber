@@ -23,7 +23,7 @@ npm run validate
 
 Keep real public facts in [src/data/site.ts](src/data/site.ts). It contains the site name, app path, page metadata, languages, visible access options, crawler policy, verification fields, and all unresolved launch values. The pre-launch canonical domain uses the reserved `.invalid` suffix on purpose; replace it with the real HTTPS domain before deployment.
 
-Do not publish a public App Store link, support address, legal entity, privacy date, analytics configuration, verification token, or social account until it is verified. The privacy and terms pages are currently `noindex` placeholders, rather than final legal policies.
+Do not publish a public App Store link, legal entity, analytics configuration, verification token, or social account until it is verified. The published Privacy Policy, Terms of Use, and support email should be reviewed whenever the app’s data handling or purchase flow changes.
 
 ## Discovery features
 

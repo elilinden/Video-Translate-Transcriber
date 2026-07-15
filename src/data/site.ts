@@ -7,9 +7,9 @@ const canonicalBaseUrl = isGitHubPagesDeployment
 export const publicFactsTodo = {
   productionUrl: 'TODO: replace video-translate-transcriber.invalid with the production HTTPS domain before launch',
   appStoreUrl: 'TODO: add the verified App Store listing URL before launch',
-  supportEmail: 'TODO: add the public support email before launch',
+  supportEmail: 'batchcompressvideos@gmail.com',
   legalEntity: 'TODO: add the legal business or developer name before launch',
-  privacyEffectiveDate: 'TODO: add the privacy policy effective date before launch',
+  privacyEffectiveDate: 'July 14, 2026',
   socialHandle: 'TODO: add a verified social profile if one will be published',
   googleVerification: 'TODO: add the Google Search Console verification token after the domain is live',
   bingVerification: 'TODO: add the Bing Webmaster Tools verification token after the domain is live',
@@ -73,7 +73,7 @@ export const site = {
     canonicalBaseUrl,
     locale: 'en_US',
     socialImagePath: '/social-share.png',
-    noindexPaths: ['/privacy', '/terms'],
+    noindexPaths: [],
     crawlerPolicy: {
       allowOaiSearchBot: true,
       allowChatGptUser: true,
@@ -143,14 +143,14 @@ export const pageMetadata = {
     label: 'Privacy',
     title: 'Privacy — Video Translate Transcriber',
     description:
-      'Read the current pre-release privacy overview for Video Translate Transcriber.',
+      'Read how Video Translate Transcriber handles videos, purchases, support requests, and privacy choices.',
   },
   terms: {
     pathname: '/terms',
     label: 'Terms',
     title: 'Terms — Video Translate Transcriber',
     description:
-      'Read the current pre-release terms overview for Video Translate Transcriber.',
+      'Read the Terms of Use for Video Translate Transcriber, including subscriptions, content, and service limits.',
   },
 } as const;
 

@@ -50,7 +50,7 @@ const htmlFiles = allFiles.filter((file) => file.endsWith('.html'));
 const routes = new Set(htmlFiles.map(routeFor));
 const titles = new Map();
 const descriptions = new Map();
-const noindexRoutes = new Set(['/privacy', '/terms']);
+const noindexRoutes = new Set();
 let linkChecks = 0;
 let imageChecks = 0;
 let jsonLdDocuments = 0;

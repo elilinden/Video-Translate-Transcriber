@@ -4,7 +4,7 @@
 
 - [ ] In [src/data/site.ts](src/data/site.ts), replace `https://video-translate-transcriber.invalid` with the exact final HTTPS site URL. Rebuild so canonical tags, sitemap URLs, robots, and social image URLs all use that one domain.
 - [ ] Add the verified App Store URL, public support email, legal business/developer name, privacy-policy date, and any verified social profile.
-- [ ] Replace the privacy and terms placeholders with counsel-approved text. Remove those two paths from `seo.noindexPaths` only after the public legal documents are complete.
+- [ ] Review the published Privacy Policy and Terms of Use with counsel whenever app data handling, subscription terms, or legal requirements change.
 - [ ] Confirm the weekly trial, weekly price, lifetime price, restore-purchase wording, and App Store subscription configuration match exactly.
 - [ ] Review whether the stated on-device processing description and App Store privacy disclosures remain accurate for the release build.
 - [ ] Decide whether GPTBot should stay blocked. It is blocked by default; OAI-SearchBot and ChatGPT-User are allowed.
