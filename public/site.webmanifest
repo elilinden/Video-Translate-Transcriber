@@ -1,6 +1,6 @@
 {
-  "name": "Video Translate Transcriber",
-  "short_name": "Video Translate Transcriber",
+  "name": "Video Transcriber: Subtitles",
+  "short_name": "Video Transcriber: Subtitles",
   "description": "Transcription, translation, and timed subtitles for spoken video.",
   "start_url": "./app",
   "display": "standalone",

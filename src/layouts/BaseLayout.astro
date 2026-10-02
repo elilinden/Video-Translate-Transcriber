@@ -38,12 +38,12 @@ const schemas = structuredDataForPage(page);
     <meta property="og:description" content={metadata.description} />
     <meta property="og:url" content={canonicalUrl} />
     <meta property="og:image" content={socialImageUrl} />
-    <meta property="og:image:alt" content="Video Translate Transcriber app preview for transcribing and translating spoken video into subtitles" />
+    <meta property="og:image:alt" content="Video Transcriber: Subtitles app preview for transcribing and translating spoken video into subtitles" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={metadata.title} />
     <meta name="twitter:description" content={metadata.description} />
     <meta name="twitter:image" content={socialImageUrl} />
-    <meta name="twitter:image:alt" content="Video Translate Transcriber app preview for transcribing and translating spoken video into subtitles" />
+    <meta name="twitter:image:alt" content="Video Transcriber: Subtitles app preview for transcribing and translating spoken video into subtitles" />
     {site.seo.verification.google && <meta name="google-site-verification" content={site.seo.verification.google} />}
     {site.seo.verification.bing && <meta name="msvalidate.01" content={site.seo.verification.bing} />}
     {schemas.map((schema) => <JsonLd data={schema} />)}

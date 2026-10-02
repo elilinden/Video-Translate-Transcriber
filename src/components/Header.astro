@@ -17,13 +17,13 @@ const path = Astro.url.pathname;
       ))}
     </nav>
 
-    <a class="button button-small header-cta" href={withBase(site.appPath)}>Open the app <span aria-hidden="true">↗</span></a>
+    <a class="button button-small header-cta" href={withBase(site.appPath)}>View on the App Store <span aria-hidden="true">↗</span></a>
 
     <details class="mobile-nav">
       <summary aria-label="Open navigation"><span></span><span></span></summary>
       <nav aria-label="Mobile navigation">
         {site.nav.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
-        <a class="mobile-download" href={withBase(site.appPath)}>Open the app <span aria-hidden="true">↗</span></a>
+        <a class="mobile-download" href={withBase(site.appPath)}>View on the App Store <span aria-hidden="true">↗</span></a>
       </nav>
     </details>
   </div>
